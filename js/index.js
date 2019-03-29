@@ -1,10 +1,7 @@
-// ReactJS Slide Puzzle
-// Author:     Evan Henley
-// Author URI: henleyedition.com
-
 (function () {
 
-  var Game = React.createClass({ displayName: 'Game',
+  var Game = React.createClass({
+    displayName: 'Game',
 
     shuffle: function (array) {
 
@@ -44,7 +41,8 @@
 
       // fischer-yates shuffle algorithm
       function fischerYates(array) {
-        var counter = array.length,temp,index;
+        var counter = array.length,
+          temp, index;
 
         // While there are elements in the array
         while (counter > 0) {
@@ -76,11 +74,13 @@
       return {
         // initial state of game board
         tiles: this.shuffle([
-        1, 2, 3,
-        4, 5, 6,
-        7, 8, '']),
+          1, 2, 3,
+          4, 5, 6,
+          7, 8, ''
+        ]),
 
-        win: false };
+        win: false
+      };
 
     },
     checkBoard: function () {
@@ -98,9 +98,16 @@
       // [up,right,down,left]
       // 9 = out of bounds
       var moves = [
-      [null, 1, 3, null], [null, 2, 4, 0], [null, null, 5, 1],
-      [0, 4, 6, null], [1, 5, 7, 3], [2, null, 8, 4],
-      [3, 7, null, null], [4, 8, null, 6], [5, null, null, 7]];
+        [null, 1, 3, null],
+        [null, 2, 4, 0],
+        [null, null, 5, 1],
+        [0, 4, 6, null],
+        [1, 5, 7, 3],
+        [2, null, 8, 4],
+        [3, 7, null, null],
+        [4, 8, null, 6],
+        [5, null, null, 7]
+      ];
 
 
       function animateTiles(i, move) {
@@ -128,7 +135,8 @@
         this.setState({
           tiles: tiles,
           moves: moves,
-          win: this.checkBoard() });
+          win: this.checkBoard()
+        });
 
       };
 
@@ -151,41 +159,66 @@
     },
     render: function () {
       return React.DOM.div(null,
-      React.DOM.div({ id: "game-board" },
-      this.state.tiles.map(function (tile, position) {
-        return Tile({ status: tile, key: position, tileClick: this.tileClick });
-      }, this)),
+        React.DOM.div({
+            id: "game-board"
+          },
+          this.state.tiles.map(function (tile, position) {
+            return Tile({
+              status: tile,
+              key: position,
+              tileClick: this.tileClick
+            });
+          }, this)),
 
-      Menu({ winClass: this.state.win ? 'button win' : 'button', status: this.state.win ? 'You win!' : 'Solve the puzzle.', restart: this.restartGame }));
+        Menu({
+          winClass: this.state.win ? 'button win' : 'button',
+          status: this.state.win ? 'You win!' : 'Solve the puzzle.',
+          restart: this.restartGame
+        }));
 
-    } });
+    }
+  });
 
 
-  var Tile = React.createClass({ displayName: 'Tile',
+  var Tile = React.createClass({
+    displayName: 'Tile',
     clickHandler: function (e) {
       this.props.tileClick(e.target, this.props.key, this.props.status);
     },
     render: function () {
-      return React.DOM.div({ className: "tile", onClick: this.clickHandler }, this.props.status);
-    } });
+      return React.DOM.div({
+        className: "tile",
+        onClick: this.clickHandler
+      }, this.props.status);
+    }
+  });
 
 
-  var Menu = React.createClass({ displayName: 'Menu',
+  var Menu = React.createClass({
+    displayName: 'Menu',
     clickHandler: function () {
       this.props.restart();
     },
     render: function () {
-      return React.DOM.div({ id: "menu" },
-      React.DOM.h3({ id: "subtitle" }, this.props.status),
-      React.DOM.a({ className: this.props.winClass, onClick: this.clickHandler }, "Restart"));
+      return React.DOM.div({
+          id: "menu"
+        },
+        React.DOM.h3({
+          id: "subtitle"
+        }, this.props.status),
+        React.DOM.a({
+          className: this.props.winClass,
+          onClick: this.clickHandler
+        }, "Restart"));
 
-    } });
+    }
+  });
 
 
   // render Game to container
   React.renderComponent(
-  Game(null),
-  document.getElementById('game-container'));
+    Game(null),
+    document.getElementById('game-container'));
 
 
 })();
