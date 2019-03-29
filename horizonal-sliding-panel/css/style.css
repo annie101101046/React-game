@@ -1,0 +1,42 @@
+.page-transition-enter {
+  -webkit-transform: translate(100%);
+  transform: translate(100%);
+  position: absolute;
+}
+
+.page-transition-enter.page-transition-enter-active {
+  -webkit-transform: translate(0%);
+  transform: translate(0%);
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+}
+
+.page-transition-leave {
+  -webkit-transform: translate(0%);
+  transform: translate(0%);
+  position: absolute;
+}
+
+.page-transition-leave.page-transition-leave-active {
+  -webkit-transform: translate(-100%);
+  transform: translate(-100%);
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+}
+
+
+
+.panel {
+  width: 100%;
+  min-height: 700px;
+}
+
+.panel.Game {
+  background: pink;
+}
+
+.panel.Score {
+  background: lightblue;
+}

@@ -3,22 +3,28 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>A Pen by BaduHuang</title>
-
-
-  <link rel="stylesheet" href="css/style.css">
-
+  <title>Login page</title>
+  <link rel="stylesheet" href="login.css">
 
 </head>
 
 <body>
-
-  <div id="game-wrapper">
-    <h1 class="title">Puzzle Practice</h1>
-    <div id="game-container"></div>
+  <button id="myButton" class="submit-button">Game Page</button>
+  <div id="app">
   </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/0.11.1/react.min.js'></script>
-  <script src="js/index.js"></script>
+
+  <script src='https://npmcdn.com/react@15.3.0/dist/react.min.js'></script>
+  <script src='https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js'></script>
+  <script src="js/login.js"></script>
+  <script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+      location.href = "game.html";
+    };
+  </script>
+  </script>
+
+
+
 </body>
 
 </html>

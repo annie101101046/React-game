@@ -1,0 +1,31 @@
+$animationTime: 1s;
+$ease: ease-in-out;
+.page-transition-enter {
+  //transition: opacity 10s ease-in-out;
+  transform: translate(100%);
+  position: absolute;
+}
+.page-transition-enter.page-transition-enter-active {
+  transform: translate(0%);
+  transition: transform $animationTime $ease;
+}
+.page-transition-leave {
+  transform: translate(0%);
+  position: absolute;
+}
+.page-transition-leave.page-transition-leave-active {
+  transform: translate(-100%);
+  transition: transform $animationTime $ease;
+}
+.panel {
+  width: 100%;
+  min-height: 700px;
+}
+
+.panel.home {
+  background: pink;
+}
+
+.panel.about {
+  background: lightblue;
+}

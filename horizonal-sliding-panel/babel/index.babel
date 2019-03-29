@@ -1,0 +1,61 @@
+//  transitionName={segment === 'root' ? 'reversePageSwap' : 'pageSwap'}
+
+// https://medium.com/front-end-hacking/react-page-transition-animations-9d18c90a9831#.sb2gac31z
+
+var {Route, DefaultRoute, RouteHandler, Link} = ReactRouter;
+var TransitionGroup = React.addons.CSSTransitionGroup;
+
+class Layout extends React.Component {
+  render() {
+    var name = this.context.router.getCurrentPath();
+    return (
+      <div>
+        <nav>
+          <ul>
+            <li><Link to="home">home</Link></li>
+            <li><Link to="about">about</Link></li>
+          </ul>
+        </nav>
+        <TransitionGroup
+          component="div" 
+          transitionName="page-transition"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          <RouteHandler key={name} />
+        </TransitionGroup>
+      </div>
+    );
+  }
+}
+Layout.contextTypes = {
+  router: React.PropTypes.func.isRequired
+};
+
+class Home extends React.Component {
+  render() {
+    return (
+          <div className="panel home">
+      	    Home!
+            </div>
+      
+    );
+  }
+}
+
+class About extends React.Component {
+  render() {
+    return (
+      <div className="panel about">About!</div>
+    );
+  }
+}
+
+var Routes = (
+  <Route name="app" path="/" handler={Layout}>
+    <Route name="home" handler={Home} />
+    <Route name="about" handler={About} />
+    <DefaultRoute handler={Home} />
+  </Route>
+);
+
+ReactRouter.run(Routes, (Handler) => React.render(<Handler /> , document.getElementById('app')));
